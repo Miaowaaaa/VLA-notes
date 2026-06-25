@@ -2,7 +2,7 @@
 
 ## 模块概述
 
-`FinalLayer` 是 Flow Matching / Diffusion 模型中的输出层，负责将去噪后的隐藏状态映射到最终的动作输出。它使用了**自适应层归一化调制（Adaptive Layer Normalization Modulation, adaLN）**技术，这是 DiT（Diffusion Transformer）架构中的关键组件。
+`FinalLayer` 是 Flow Matching / Diffusion 模型中的输出层，负责将去噪后的隐藏状态映射到最终的动作输出。它使用了**自适应层归一化调制（Adaptive Layer Normalization Modulation, adaLN）** 技术，这是 DiT（Diffusion Transformer）架构中的关键组件。
 
 ## 网络结构
 
