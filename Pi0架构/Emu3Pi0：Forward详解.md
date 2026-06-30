@@ -120,7 +120,7 @@ action_initial_hidden_states = torch.cat([state_token_embedding, action_hidden_s
 
 ---
 
-## 3. Attention Mask：规定"谁能看到谁"
+## 3. 关键设计：Attention Mask：规定"谁能看到谁"
 
 这是 `Emu3Pi0` 最关键的设计之一。它构造了一个**非标准的 attention mask**，让 VLM 和 Action 以特定方式互相看。
 
@@ -135,9 +135,9 @@ combined_attention_mask_4d = self.create_causal_style_attention_mask(
 
 假设总序列 = `[VLM 部分 (2400 tokens)] [Action 部分 (9 tokens: 1 state + 8 frames)]`
 
-| 区域 | 规则 | 通俗解释 | 为什么 |
+| 区域 | 规则 | 通俗解释 | 补充 |
 |------|------|---------|-----|
-| **VLM → VLM** | Causal | VLM 内部只能看前面的 token（标准 GPT 行为）| - |
+| **VLM → VLM** | Causal | VLM 内部只能看前面的 token（标准 GPT 行为）| [计算原理](./Attention%20Mask之%20VLM%20causal%20mask生成计算原理.md) |
 | **Action → Action** | 双向 | Action 内部可以互相看（默认）| [原因](./Attention%20Mask之%20Action%20%26%20Action.md) |
 | **Action → VLM** | 只能看到第二个 BOA 之前 | Action 不能偷看"未来动作"的文本描述 | - |
 | **VLM → Action** | 完全看不到 | VLM 看不到 Action 的任何信息 | - |
